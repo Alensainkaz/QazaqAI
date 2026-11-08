@@ -20,7 +20,13 @@ class Tokenizer:
             token_id = self.vocab.get(word, self.vocab["<UNK>"])
             tokens.append(token_id)
         return tokens 
-    
+    def decode(self, tokens):
+        words = []
+        for token_id in tokens:
+            for word, id in self.vocab.items():
+                if id == token_id:
+                    words.append(word)
+        return " ".join(words)            
 tokenizer = Tokenizer()
 text = "Hello, World"
 
